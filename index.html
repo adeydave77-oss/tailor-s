@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Tailor's Measurement Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap head-row">
+    <div>
+      <h1 id="brandName">Your Brand</h1>
+      <p id="designerLine">by Designer Name</p>
+    </div>
+    <button class="ghost" id="openSettings" type="button">Brand settings</button>
+  </div>
+  <div class="tape" aria-hidden="true"></div>
+</header>
+
+<main class="wrap">
+
+  <section class="block">
+    <h2>Customer</h2>
+    <div class="row">
+      <label class="field grow">Customer name
+        <input id="customer" type="text" placeholder="e.g. Tunde Bakare" autocomplete="off">
+      </label>
+      <div class="field">Unit
+        <div class="seg" id="unitSeg">
+          <button type="button" data-unit="in" class="on">Inches</button>
+          <button type="button" data-unit="cm">Cm</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Measurements</h2>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="panel" id="panel"></div>
+  </section>
+
+  <section class="block">
+    <h2>Style preferences</h2>
+    <p class="hint">Tap the styles the customer likes. Add your own photos with the last tile.</p>
+    <div class="gallery" id="gallery"></div>
+    <input type="file" id="upload" accept="image/*" hidden>
+    <label class="field">Extra notes
+      <textarea id="notes" rows="2" placeholder="Fabric, colour, delivery date…"></textarea>
+    </label>
+  </section>
+
+</main>
+
+<div class="sendbar">
+  <div class="wrap sendrow">
+    <span id="summary">0 measurements · 0 styles</span>
+    <button class="primary" id="send" type="button">Send to WhatsApp</button>
+  </div>
+</div>
+
+<dialog id="settings">
+  <form method="dialog" id="settingsForm">
+    <h2>Brand settings</h2>
+    <label class="field">Brand name<input id="sBrand" type="text"></label>
+    <label class="field">Designer name<input id="sDesigner" type="text"></label>
+    <label class="field">WhatsApp number (with country code, no +)
+      <input id="sPhone" type="tel" placeholder="2348012345678">
+    </label>
+    <label class="field">Brand colour<input id="sColor" type="color"></label>
+    <div class="row end">
+      <button class="ghost" value="cancel">Cancel</button>
+      <button class="primary" value="save" id="saveSettings">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
