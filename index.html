@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> Tailor's Measurement Sheet</title>
+<title>Tailor's Measurement Sheet</title>
+<meta name="theme-color" content="#25346b">
+<meta name="description" content="Take a customer's measurements and send them straight to WhatsApp.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,7 +24,10 @@
       <h1 id="brandName">Your Brand</h1>
       <p id="designerLine">by Designer Name</p>
     </div>
-    <button class="ghost" id="openSettings" type="button">Brand settings</button>
+    <div class="head-actions">
+      <button class="ghost" id="install" type="button" hidden>Install app</button>
+      <button class="ghost" id="openSettings" type="button">Brand settings</button>
+    </div>
   </div>
   <div class="tape" aria-hidden="true"></div>
 </header>
@@ -36,11 +46,26 @@
           <button type="button" data-unit="cm">Cm</button>
         </div>
       </div>
+      <button class="ghost alignbtn" id="newCustomer" type="button">New customer</button>
     </div>
   </section>
 
   <section class="block">
     <h2>Measurements</h2>
+    <div class="voicebar" id="voicebar" hidden>
+      <button class="ghost mic" id="micDictate" type="button" aria-pressed="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>
+        <b>Dictate</b>
+      </button>
+      <button class="ghost mic" id="micGuide" type="button" aria-pressed="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h3l3-7 4 14 3-7h3"/></svg>
+        <b>Guide me</b>
+      </button>
+      <label class="chk"><input type="checkbox" id="speakToggle" checked> Read field names aloud</label>
+    </div>
+    <p class="hint" id="voiceHint" hidden>Voice entry works in Chrome (Android or desktop). Typing works everywhere.</p>
+    <div class="voicestatus" id="voiceStatus" role="status" aria-live="polite" hidden></div>
+    <div class="heard" id="heard" hidden></div>
     <div class="tabs" id="tabs" role="tablist"></div>
     <div class="panel" id="panel"></div>
   </section>
@@ -81,6 +106,7 @@
 </dialog>
 
 <div class="toast" id="toast" role="status"></div>
+<script src="voice-parse.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
